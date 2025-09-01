@@ -1,71 +1,303 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Yalancı Tavuk Göğsü Tarifi</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Yalancı Tavuk Göğsü Tarifi – Tarif Blogu</title>
+  <meta name="description" content="Blog tarzında detaylı yalancı tavuk göğsü tarifi: malzemeler, adım adım yapılış, ipuçları, porsiyon ayarlama, besin değeri ve SSS." />
   <style>
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      color: #333;
+    :root{
+      --bg:#faf8f6;--card:#ffffff;--ink:#222;--muted:#666;--brand:#9c5b32;--brand-2:#d4a373;--accent:#ffe8cc;--ok:#1a7f37;--warn:#a05a00;
     }
-    .container {
-      max-width: 700px;
-      margin: 30px auto;
-      background: #fff;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    h1, h2 {
-      text-align: center;
-      color: #5a3e36;
-    }
-    img {
-      display: block;
-      max-width: 100%;
-      border-radius: 8px;
-      margin: 20px auto;
-    }
-    ul, ol {
-      margin: 15px 0;
-      padding-left: 20px;
-    }
-    li {
-      margin-bottom: 8px;
-      line-height: 1.5;
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";line-height:1.6}
+    .container{max-width:1100px;margin-inline:auto;padding:24px}
+
+    /* Header */
+    .site-header{display:flex;gap:16px;align-items:center;justify-content:space-between;margin-bottom:24px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#fff;font-weight:700}
+    .brand h1{font-size:20px;margin:0}
+    .actions{display:flex;gap:8px}
+    .btn{appearance:none;border:1px solid #00000010;background:var(--card);color:var(--ink);padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:600;box-shadow:0 2px 6px #0000000d}
+    .btn:hover{transform:translateY(-1px)}
+    .btn.primary{background:var(--brand);border-color:transparent;color:#fff}
+
+    /* Hero */
+    .hero{background:linear-gradient(180deg,#fff, #fff0), border-box;position:relative;border-radius:18px;overflow:hidden;box-shadow:0 6px 16px #00000014}
+    .hero-media{aspect-ratio: 16 / 9; width:100%;object-fit:cover;display:block}
+    .hero-bar{position:absolute;inset:auto 0 0 0;background:linear-gradient(180deg,#0000,#0008 60%,#0009);color:#fff;padding:16px 20px}
+    .tag{display:inline-block;font-size:12px;background: #ffffff22;padding:2px 8px;border-radius:999px;margin-right:8px}
+    .title{margin:6px 0 2px;font-size:32px;letter-spacing:.2px}
+    .meta{font-size:13px;color:#eee;display:flex;flex-wrap:wrap;gap:10px}
+
+    /* Grid */
+    .grid{display:grid;grid-template-columns: 1.1fr .9fr;gap:24px;margin-top:24px}
+    @media (max-width: 900px){.grid{grid-template-columns:1fr}}
+
+    /* Card */
+    .card{background:var(--card);border-radius:16px;padding:18px 18px;border:1px solid #00000008;box-shadow:0 3px 10px #0000000c}
+    .card h2{margin:0 0 8px;font-size:22px}
+    .sub{color:var(--muted);font-size:14px;margin:0 0 16px}
+
+    /* Recipe info */
+    .recipe-top{display:flex;gap:16px;flex-wrap:wrap}
+    .pill{display:flex;align-items:center;gap:8px;background:var(--accent);border:1px dashed var(--brand-2);color:var(--warn);padding:8px 10px;border-radius:999px;font-size:13px}
+    .stars{display:inline-flex;gap:2px;vertical-align:middle}
+    .stars svg{width:16px;height:16px;fill:#f59e0b}
+
+    /* Ingredients */
+    .ing-toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:12px}
+    .ing-servings{display:flex;gap:8px;align-items:center}
+    .ing-servings input{width:64px;padding:6px 8px;border-radius:8px;border:1px solid #00000022}
+    .ingredients ul{list-style:none;padding:0;margin:0}
+    .ingredients li{display:flex;gap:10px;align-items:flex-start;padding:8px 10px;border-radius:10px}
+    .ingredients li:nth-child(odd){background:#fafafa}
+    .qty{min-width:64px;font-variant-numeric: tabular-nums}
+
+    /* Steps */
+    .steps{counter-reset: step}
+    .step{display:grid;grid-template-columns:auto 1fr;gap:12px;align-items:start;padding:12px 10px;border-bottom:1px dashed #00000014}
+    .step:last-child{border-bottom:none}
+    .step::before{counter-increment: step;content: counter(step);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:700}
+    .step label{display:flex;gap:10px}
+    .step input{margin-top:4px}
+    .note{background:#fff8e1;border:1px solid #00000010;padding:10px;border-radius:10px;font-size:14px}
+
+    /* Sidebar */
+    .sticky{position:sticky;top:16px}
+    .toc ul{margin:0;padding-left:18px}
+
+    /* Tips & Nutrition */
+    .tips li{margin-bottom:8px}
+    .nutrition{width:100%;border-collapse:collapse}
+    .nutrition th,.nutrition td{padding:8px;border-bottom:1px solid #00000012;text-align:left}
+
+    /* FAQ */
+    details{background:#f8f8f8;border:1px solid #00000012;border-radius:12px;padding:10px 12px;margin:10px 0}
+    summary{cursor:pointer;font-weight:600}
+
+    /* Footer */
+    footer{margin:32px 0 16px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* Print */
+    @media print{
+      .site-header,.actions,.hero{display:none}
+      body{background:#fff}
+      .container{padding:0}
+      a[href]::after{content:" (" attr(href) ")";font-size:12px}
     }
   </style>
+  <script>
+  // Ingredient scaler & step checking
+  document.addEventListener('DOMContentLoaded', () => {
+    const baseServings = 8; // referans
+    const input = document.querySelector('#servings');
+    const qtyEls = document.querySelectorAll('[data-base-qty]');
+    function format(n){return (Math.round(n*100)/100).toString().replace('.', ',');}
+    function scale(){
+      const cur = Math.max(1, parseFloat(input.value||baseServings));
+      qtyEls.forEach(el=>{
+        const base = parseFloat(el.dataset.baseQty);
+        const v = base * (cur/baseServings);
+        el.textContent = format(v);
+      })
+    }
+    input.addEventListener('input', scale);
+    scale();
+
+    // Print button
+    document.querySelectorAll('[data-print]').forEach(btn=>btn.addEventListener('click',()=>window.print()));
+
+    // Share (copy URL fallback)
+    const shareBtn = document.querySelector('[data-share]');
+    if(shareBtn){
+      shareBtn.addEventListener('click', async ()=>{
+        try{
+          if(navigator.share){
+            await navigator.share({title:document.title, url:location.href});
+          }else{
+            await navigator.clipboard.writeText(location.href);
+            shareBtn.textContent = 'Bağlantı kopyalandı';
+            setTimeout(()=>shareBtn.textContent='Paylaş',1500);
+          }
+        }catch(e){console.log(e)}
+      })
+    }
+  });
+  </script>
+  <!-- Structured data -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Recipe",
+    "name":"Yalancı Tavuk Göğsü",
+    "recipeCuisine":"Türk",
+    "recipeCategory":"Tatlı",
+    "author":{"@type":"Person","name":"Tarif Blogu"},
+    "prepTime":"PT10M","cookTime":"PT20M","totalTime":"PT30M",
+    "recipeYield":"8 porsiyon",
+    "image":["/assets/yalanci-tavuk-gogsu.jpg"],
+    "recipeIngredient":[
+      "125 g tereyağı",
+      "1 su bardağı un",
+      "1,5 su bardağı toz şeker",
+      "1 litre süt",
+      "1 paket vanilin"
+    ],
+    "recipeInstructions":[
+      {"@type":"HowToStep","text":"Tereyağını tencerede eritin."},
+      {"@type":"HowToStep","text":"Unu ekleyip kokusu çıkana dek kavurun."},
+      {"@type":"HowToStep","text":"Sütü yavaşça ekleyip karıştırın."},
+      {"@type":"HowToStep","text":"Şekeri ekleyip koyulaştırın; vanilini ekleyin."},
+      {"@type":"HowToStep","text":"Islatılmış borcama dökün, soğutup servis edin."}
+    ]
+  }
+  </script>
 </head>
 <body>
-  <div class="container">
-    <h1>Yalancı Tavuk Göğsü Tarifi</h1>
-    <img src="yalanci-tavuk-gogsu.jpg" alt="Yalancı Tavuk Göğsü">
+  <header class="site-header container" aria-label="Site üst menü">
+    <div class="brand">
+      <div class="logo">TB</div>
+      <h1>Tarif Blogu</h1>
+    </div>
+    <div class="actions">
+      <button class="btn" data-print>Yazdır</button>
+      <button class="btn" data-share>Paylaş</button>
+      <a class="btn primary" href="#hazirlanis">Hazırlanışa Git</a>
+    </div>
+  </header>
 
-    <h2>Malzemeler</h2>
-    <ul>
-      <li>125 g tereyağı (isteğe göre margarinle karıştırılabilir)</li>
-      <li>1 su bardağı un</li>
-      <li>1,5 su bardağı şeker</li>
-      <li>1 litre süt</li>
-      <li>1 paket vanilya</li>
-    </ul>
+  <section class="container hero" aria-label="Kapak görseli">
+    <img class="hero-media" src="/assets/yalanci-tavuk-gogsu.jpg" alt="Yalancı Tavuk Göğsü tatlısı" />
+    <div class="hero-bar">
+      <span class="tag">Tatlı</span>
+      <span class="tag">Sütlü</span>
+      <h2 class="title">Yalancı Tavuk Göğsü</h2>
+      <div class="meta">
+        <span>Yazan: <strong>Kadri</strong></span>
+        <span>•</span>
+        <span>Haz.: 10 dk • Piş.: 20 dk • Toplam: 30 dk</span>
+        <span>•</span>
+        <span class="stars" aria-label="4.7 yıldız">
+          <!-- 5 yıldız ikon -->
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.845 1.417 8.262L12 19.771 4.583 23.855 6 15.593 0 9.748l8.332-1.73z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.845 1.417 8.262L12 19.771 4.583 23.855 6 15.593 0 9.748l8.332-1.73z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.845 1.417 8.262L12 19.771 4.583 23.855 6 15.593 0 9.748l8.332-1.73z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.845 1.417 8.262L12 19.771 4.583 23.855 6 15.593 0 9.748l8.332-1.73z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true" style="opacity:.35"><path d="M12 .587l3.668 7.431L24 9.748l-6 5.845 1.417 8.262L12 19.771 4.583 23.855 6 15.593 0 9.748l8.332-1.73z"/></svg>
+        </span>
+      </div>
+    </div>
+  </section>
 
-    <h2>Hazırlanışı</h2>
-    <ol>
-      <li>Tereyağını kısık ateşte derin bir tencerede eritin.</li>
-      <li>Unu ekleyin ve kokusu çıkana kadar yaklaşık 4–5 dakika kavurun.</li>
-      <li>Tel çırpıcıyla karıştırarak sütü yavaşça ekleyin, topaklanma olmasın.</li>
-      <li>Şekeri ekleyip muhallebi kıvam alana kadar karıştırın.</li>
-      <li>Ocaktan alıp vanilyayı ekleyin ve mikserle 3–4 dakika çırpın.</li>
-      <li>22 cm boyutundaki ıslatılmış borcama döküp yüzeyi spatula ile düzeltin.</li>
-      <li>Oda sıcaklığına gelinceya kadar bekletin, ardından streçleyip buzdolabında 2–3 saat dinlendirin.</li>
-      <li>Dolaptan çıkarıp havasını almak için yanlara bastırın, servis tabağına ters çevirerek çıkarın.</li>
-      <li>Tarçın, hindistan cevizi veya Antep fıstığı ile süsleyin.</li>
-    </ol>
-  </div>
+  <main class="container grid" id="icerik">
+    <article class="card" aria-labelledby="bolum-icerik">
+      <h2 id="bolum-icerik">Tarif Hakkında</h2>
+      <p class="sub">Senaryodaki sahnenizi gerçek bir yemek blogu hissiyle sunmak için stilize bir tarif bileşeni. Aşağıda malzemeleri kişi sayısına göre ayarlayabilir, adımları tikleyebilir, notlar ve SSS bölümlerini kullanabilirsiniz.</p>
+
+      <section class="card" id="malzemeler">
+        <h2>Malzemeler</h2>
+        <div class="ing-toolbar">
+          <div class="ing-servings">
+            <strong>Porsiyon:</strong>
+            <input id="servings" type="number" min="1" step="1" value="8" aria-label="Porsiyon sayısı" />
+          </div>
+          <div class="pill" title="Sütlü & Fırınsız">Fırınsız • Sütlü tatlı</div>
+        </div>
+        <div class="ingredients">
+          <ul>
+            <li><span class="qty" data-base-qty="125">125</span> g tereyağı</li>
+            <li><span class="qty" data-base-qty="1">1</span> su bardağı un</li>
+            <li><span class="qty" data-base-qty="1.5">1,5</span> su bardağı şeker</li>
+            <li><span class="qty" data-base-qty="1">1</span> litre süt</li>
+            <li><span class="qty" data-base-qty="1">1</span> paket vanilin</li>
+            <li>Üzeri için: tarçın / Hindistan cevizi / Antep fıstığı</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card" id="hazirlanis">
+        <h2>Hazırlanışı</h2>
+        <div class="recipe-top">
+          <div class="pill" title="Zorluk">Kolay</div>
+          <div class="pill" title="Süre">30 dk</div>
+          <div class="pill" title="Ekipman">Derin tencere • Tel çırpıcı • Borcam</div>
+        </div>
+        <div class="steps" style="margin-top:12px">
+          <div class="step"><input type="checkbox" id="s1"><label for="s1"><strong>1.</strong> Tereyağını <em>derin bir tencerede</em> kısık ateşte eritin.</label></div>
+          <div class="step"><input type="checkbox" id="s2"><label for="s2"><strong>2.</strong> Elenmiş unu ekleyip kokusu çıkana kadar 4–5 dk kavurun (rengi hafif sararsın).</label></div>
+          <div class="step"><input type="checkbox" id="s3"><label for="s3"><strong>3.</strong> Tel çırpıcı ile karıştırarak sütü <em>yavaş yavaş</em> ekleyin; topaklanmayı önleyin.</label></div>
+          <div class="step"><input type="checkbox" id="s4"><label for="s4"><strong>4.</strong> Şekeri ilave edip muhallebi koyulaşana dek pişirin, ocaktan alıp vanilini ekleyin.</label></div>
+          <div class="step"><input type="checkbox" id="s5"><label for="s5"><strong>5.</strong> 22 cm ıslatılmış borcama dökün; yüzeyi spatula ile düzeltin.</label></div>
+          <div class="step"><input type="checkbox" id="s6"><label for="s6"><strong>6.</strong> Oda sıcaklığında 10–15 dk dinlendirip buzdolabında 2–3 saat soğutun.</label></div>
+          <div class="step"><input type="checkbox" id="s7"><label for="s7"><strong>7.</strong> Servisten önce ters çevirerek çıkarın; üzerine tarçın serpin.</label></div>
+        </div>
+        <p class="note" style="margin-top:12px">Sahne notu: Senaryodaki anlatım metnini bu bölüme küçük italik bir paragraf olarak da ekleyebilirsin; ör. <em>“Tereyağını derin bir tencerede eritin… Karıştırmaya devam ederken…”</em></p>
+      </section>
+
+      <section class="card" id="ipuclari">
+        <h2>İpuçları</h2>
+        <ul class="tips">
+          <li>Unu kavururken <strong>sürekli karıştırın</strong>; yanık koku oluşursa tatlı acılaşır.</li>
+          <li>Topaksız kıvam için sütü <em>2–3 seferde</em> ve tel çırpıcı ile ekleyin.</li>
+          <li>Daha hafif lezzet için tereyağının bir kısmını <em>bitkisel margarin</em> ile dengeleyebilirsiniz.</li>
+          <li>Servisten önce üstüne <strong>tarçın şablonu</strong> ile desen yapabilirsiniz.</li>
+        </ul>
+      </section>
+
+      <section class="card" id="besin">
+        <h2>Besin Değerleri (1 porsiyon)</h2>
+        <table class="nutrition" aria-label="Besin tablosu">
+          <tr><th>Kalori</th><td>235 kcal</td></tr>
+          <tr><th>Karbonhidrat</th><td>32 g</td></tr>
+          <tr><th>Protein</th><td>5 g</td></tr>
+          <tr><th>Yağ</th><td>9 g</td></tr>
+          <tr><th>Şeker</th><td>22 g</td></tr>
+          <tr><th>Tuz</th><td>0,2 g</td></tr>
+        </table>
+        <p class="sub">*Değerler yaklaşık olup malzemeye göre değişebilir.</p>
+      </section>
+
+      <section class="card" id="sss">
+        <h2>Sık Sorulan Sorular</h2>
+        <details><summary>Süt yerine ne kullanabilirim?</summary><p>Laktozsuz süt veya badem sütü ile denenebilir; doku farklılaşabilir.</p></details>
+        <details><summary>Neden topaklanıyor?</summary><p>Sütü hızlı dökmek ve yeterince çırpmamak topak yapar. Süzgeçten geçirebilirsiniz.</p></details>
+        <details><summary>Daha yoğun kıvam istersem?</summary><p>Unu 1,1 su bardağına çıkarabilir veya pişirme süresini biraz uzatabilirsiniz.</p></details>
+      </section>
+    </article>
+
+    <aside class="card sticky" aria-label="Yan panel">
+      <nav class="toc" aria-label="İçindekiler">
+        <h2>İçindekiler</h2>
+        <ul>
+          <li><a href="#malzemeler">Malzemeler</a></li>
+          <li><a href="#hazirlanis">Hazırlanışı</a></li>
+          <li><a href="#ipuclari">İpuçları</a></li>
+          <li><a href="#besin">Besin Değerleri</a></li>
+          <li><a href="#sss">SSS</a></li>
+        </ul>
+      </nav>
+      <hr style="border:none;border-top:1px solid #00000014;margin:14px 0" />
+      <section>
+        <h2>Etiketler</h2>
+        <p><span class="tag" style="background:#f1f5f9;color:#111">#sütlü</span> <span class="tag" style="background:#f1f5f9;color:#111">#fırınsız</span> <span class="tag" style="background:#f1f5f9;color:#111">#klasik</span></p>
+      </section>
+      <section>
+        <h2>Paylaş</h2>
+        <button class="btn" data-share style="width:100%">Paylaş</button>
+      </section>
+      <section>
+        <h2>Yazdır</h2>
+        <button class="btn" data-print style="width:100%">Yazdır</button>
+      </section>
+    </aside>
+  </main>
+
+  <footer>
+    <p>© <span id="yil"></span> Tarif Blogu • Bu sayfa film/TV senaryosu sahnesini "tarif sayfası" formatında sunmak için tasarlanmıştır.</p>
+  </footer>
+
+  <script>document.getElementById('yil').textContent = new Date().getFullYear();</script>
 </body>
 </html>
