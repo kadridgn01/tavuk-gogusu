@@ -33,13 +33,14 @@
     .site-header{grid-template-columns:1fr auto}
   }
 
-  /* HERO – full-bleed görsel, kart içinde tam oturur */
-  .hero{position:relative;border-radius:24px;overflow:hidden}
-  .hero-media{position:relative;width:100%;background:#fff}
-  .hero-media::before{content:"";display:block;padding-top:56.25%} /* 16:9 */
-  .hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+  /* HERO: figure default margin fix + full-bleed */
+.hero { border-radius: 24px; overflow: hidden; }
+.hero-media { position: relative; width: 100%; margin: 0; display: block; }  /* <-- kritik */
+.hero-media::before { content: ""; display: block; padding-top: 56.25%; }     /* 16:9 oran */
+.hero-media img { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center; }
   /* oranı 4:3 yapmak istersen: figure classına ar-4x3 ekle */
-  .ar-4x3::before{padding-top:75%}
+ .ar-4x3::before { padding-top: 75%; }
   /* alt yazı barı */
   .hero-bar{position:absolute;left:0;right:0;bottom:0;
     padding:14px 18px;background:linear-gradient(180deg,#0000 0%,#0008 55%,#000b 100%);color:#fff}
