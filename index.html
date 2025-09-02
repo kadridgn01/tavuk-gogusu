@@ -1,188 +1,110 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Yalancı Tavuk Göğsü Tarifi – Tarif Blogu</title>
-<meta name="description" content="Blog tarzında yalancı tavuk göğsü tarifi: malzemeler, adım adım yapılış, ipuçları, porsiyon ayarı, besin değeri ve SSS.">
-<style>
-  :root{
-    --bg:#faf8f6; --card:#fff; --ink:#222; --muted:#626262;
-    --brand:#9c5b32; --brand-2:#d4a373; --radius:18px;
-    --gutter:clamp(16px,4vw,24px);
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
-    font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;overflow-x:hidden}
-  img{max-width:100%;height:auto;display:block}
-  .container{max-width:1100px;margin-inline:auto;padding-inline:var(--gutter)}
-  .card{background:var(--card);border:1px solid #00000012;border-radius:var(--radius);box-shadow:0 6px 18px #00000014}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Yalancı Tavuk Göğsü Tarifi – Tarif Blogu</title>
+  <meta name="description" content="Blog tarzında yalancı tavuk göğsü tarifi: malzemeler, adım adım yapılış, ipuçları, porsiyon ayarı, besin değeri ve SSS.">
+  <meta name="theme-color" content="#9c5b32">
+  <!-- iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Tarif Blogu">
+  <link rel="apple-touch-icon" href="assets/icon-192.png">
 
-  /* HEADER – mobilde iki satır, masaüstünde tek satır */
-  .site-header{display:grid;gap:10px;align-items:center;padding-block:14px}
-  .brand{display:flex;align-items:center;gap:10px}
-  .logo{width:40px;height:40px;border-radius:10px;
-    background:linear-gradient(135deg,var(--brand),var(--brand-2));
-    display:grid;place-items:center;color:#fff;font-weight:700}
-  .site-title{margin:0;font-size:22px;line-height:1.1}
-  .actions{display:flex;gap:8px;flex-wrap:wrap}
-  .btn{appearance:none;border:1px solid #00000018;background:var(--card);color:var(--ink);
-    padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:600}
-  .btn.primary{background:var(--brand);border-color:transparent;color:#fff}
-  @media (min-width:720px){
-    .site-header{grid-template-columns:1fr auto}
-  }
+  <style>
+    :root{
+      --bg:#faf8f6; --card:#fff; --ink:#222; --muted:#626262;
+      --brand:#9c5b32; --brand-2:#d4a373; --radius:18px;
+      --gutter:clamp(16px,4vw,24px);
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;line-height:1.6;overflow-x:hidden}
+    img{max-width:100%;height:auto;display:block}
+    figure{margin:0} /* Safari default figure margin fix */
+    .container{max-width:1100px;margin-inline:auto;padding-inline:var(--gutter)}
+    .card{background:var(--card);border:1px solid #00000012;border-radius:var(--radius);box-shadow:0 6px 18px #00000014}
 
-/* --- HERO FIX --- */
-.hero{ position:relative; border-radius:24px; overflow:hidden; isolation:isolate; }
-.hero-media{ margin:0; position:relative; aspect-ratio: 16 / 9; }   /* oran: 16:9 */
-.hero-media::before{ content:none !important; }                     /* eski padding hack'i kapat */
-.hero-media img{
-  position:absolute; inset:0; width:100%; height:100%;
-  object-fit: cover;               /* kaplasın — kırpma olur ama boşluk kalmaz */
-  object-position: center center;  /* tam ortadan kırp */
-  display:block;
-}
-.hero-bar{
-  position:absolute; left:0; right:0; bottom:0;
-  z-index:2;                       /* bar her zaman görselin üstünde */
-  padding:14px 18px;
-  background:linear-gradient(180deg,#0000 0%,#0008 55%,#000b 100%);
-  color:#fff;
-}
+    /* HEADER */
+    .site-header{display:grid;gap:10px;align-items:center;padding-block:14px}
+    .brand{display:flex;align-items:center;gap:10px}
+    .logo{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--brand-2));display:grid;place-items:center;color:#fff;font-weight:700}
+    .site-title{margin:0;font-size:22px;line-height:1.1}
+    .actions{display:flex;gap:8px;flex-wrap:wrap}
+    .btn{appearance:none;border:1px solid #00000018;background:var(--card);color:var(--ink);padding:10px 14px;border-radius:12px;cursor:pointer;font-weight:600}
+    .btn.primary{background:var(--brand);border-color:transparent;color:#fff}
+    @media (min-width:720px){ .site-header{grid-template-columns:1fr auto} }
 
-/* 4:3 ister misin? figure'e class="hero-media ar-4x3" ekle */
-.ar-4x3{ aspect-ratio: 4 / 3; }
+    /* HERO full-bleed (stabil) */
+    .hero{position:relative;border-radius:24px;overflow:hidden;isolation:isolate}
+    .hero-media{position:relative;aspect-ratio:16/9} /* 4:3 istersen ar-4x3 ekle */
+    .ar-4x3{aspect-ratio:4/3}
+    .hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+    .hero-bar{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:14px 18px;
+      background:linear-gradient(180deg,#0000 0%,#0008 55%,#000b 100%);color:#fff}
+    .tag{display:inline-block;font-size:12px;background:#ffffff26;padding:2px 8px;border-radius:999px;margin-right:6px}
+    .hero-title{margin:8px 0 6px;font-size:clamp(22px,3.8vw,32px);letter-spacing:.2px}
+    .hero-meta{font-size:13px;color:#f2f2f2;display:flex;gap:10px;flex-wrap:wrap}
 
-/* Safari default figure boşluğunu kapatmak için genel kural */
-figure{ margin:0; }
+    /* LAYOUT */
+    .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(16px,3vw,24px);margin-top:var(--gutter)}
+    @media (max-width:900px){.grid{grid-template-columns:1fr}}
+    .section{padding:clamp(14px,2.5vw,18px)}
+    .sub{color:var(--muted);font-size:14px;margin-top:0}
 
+    /* INGREDIENTS */
+    .ing-toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap}
+    .ing-servings{display:flex;gap:8px;align-items:center}
+    .ing-servings input{width:70px;padding:8px;border-radius:10px;border:1px solid #00000022}
+    .ingredients ul{list-style:none;margin:0;padding:0}
+    .ingredients li{display:flex;gap:10px;padding:8px;border-radius:10px}
+    .ingredients li:nth-child(odd){background:#fafafa}
+    .qty{min-width:64px;font-variant-numeric:tabular-nums}
 
-  /* LAYOUT */
-  .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(16px,3vw,24px);margin-top:var(--gutter)}
-  @media (max-width:900px){.grid{grid-template-columns:1fr}}
-  .section{padding:clamp(14px,2.5vw,18px)}
-  .sub{color:var(--muted);font-size:14px;margin-top:0}
+    /* STEPS */
+    .steps{counter-reset:step}
+    .step{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:10px;border-bottom:1px dashed #00000014}
+    .step:last-child{border-bottom:none}
+    .step::before{counter-increment:step;content:counter(step);width:26px;height:26px;border-radius:999px;display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:700}
+    .note{background:#fff8e1;border:1px solid #00000010;padding:10px;border-radius:10px;font-size:14px}
 
-  /* Ingredients */
-  .ing-toolbar{display:flex;gap:8px;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap}
-  .ing-servings{display:flex;gap:8px;align-items:center}
-  .ing-servings input{width:70px;padding:8px;border-radius:10px;border:1px solid #00000022}
-  .ingredients ul{list-style:none;margin:0;padding:0}
-  .ingredients li{display:flex;gap:10px;padding:8px;border-radius:10px}
-  .ingredients li:nth-child(odd){background:#fafafa}
-  .qty{min-width:64px;font-variant-numeric:tabular-nums}
+    /* SIDEBAR */
+    .sticky{position:sticky;top:14px}
+    .toc ul{margin:0;padding-left:18px}
 
-  /* Steps */
-  .steps{counter-reset:step}
-  .step{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:start;padding:10px;border-bottom:1px dashed #00000014}
-  .step:last-child{border-bottom:none}
-  .step::before{counter-increment:step;content:counter(step);width:26px;height:26px;border-radius:999px;
-    display:grid;place-items:center;background:var(--brand);color:#fff;font-weight:700}
-  .note{background:#fff8e1;border:1px solid #00000010;padding:10px;border-radius:10px;font-size:14px}
+    /* TABLE */
+    .nutrition{width:100%;border-collapse:collapse}
+    .nutrition th,.nutrition td{padding:8px;border-bottom:1px solid #00000012;text-align:left}
 
-  /* Sidebar */
-  .sticky{position:sticky;top:14px}
-  .toc ul{margin:0;padding-left:18px}
+    /* FOOTER */
+    footer{color:var(--muted);font-size:13px;text-align:center;padding:24px 0;padding-bottom:calc(24px + env(safe-area-inset-bottom))}
+  </style>
 
-  /* Table */
-  .nutrition{width:100%;border-collapse:collapse}
-  .nutrition th,.nutrition td{padding:8px;border-bottom:1px solid #00000012;text-align:left}
-
-  /* Footer */
-  footer{color:var(--muted);font-size:13px;text-align:center;padding:24px 0; padding-bottom:calc(24px + env(safe-area-inset-bottom))}
-
-  <!-- PWA: iOS -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Tarif Blogu">
-<link rel="apple-touch-icon" href="assets/icon-192.png">
-
-<!-- Tema rengi -->
-<meta name="theme-color" content="#9c5b32">
-
-<!-- PWA: Manifest (tek dosyada blob olarak) -->
-<script>
-  (function () {
-    const manifest = {
-      name: "Tarif Blogu",
-      short_name: "Tarif",
-      start_url: ".",
-      scope: ".",
-      display: "standalone",
-      background_color: "#ffffff",
-      theme_color: "#9c5b32",
-      icons: [
-        { src: "assets/icon-192.png", sizes: "192x192", type: "image/png" },
-        { src: "assets/icon-512.png", sizes: "512x512", type: "image/png" }
-      ]
-    };
-    const blob = new Blob([JSON.stringify(manifest)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("link");
-    link.rel = "manifest";
-    link.href = url;
-    document.head.appendChild(link);
-  })();
-</script>
-
-</style>
-</head>
+  <!-- Manifest (blob) -->
   <script>
-  // ---- Service Worker (offline + güncelleme) ----
-  if ("serviceWorker" in navigator) {
-    const swCode = `
-      const CACHE = 'tarif-v1';
-      const PRECACHE = ['./']; // index
-      self.addEventListener('install', e => {
-        e.waitUntil(caches.open(CACHE).then(c=>c.addAll(PRECACHE)));
-        self.skipWaiting();
-      });
-      self.addEventListener('activate', e => {
-        e.waitUntil(
-          caches.keys().then(keys => Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))
-        );
-        self.clients.claim();
-      });
-      self.addEventListener('fetch', e => {
-        e.respondWith(
-          caches.match(e.request).then(r => r || fetch(e.request).then(res => {
-            const copy = res.clone();
-            caches.open(CACHE).then(c=>c.put(e.request, copy));
-            return res;
-          }).catch(()=>caches.match('./')))
-        );
-      });
-    `;
-    const blob = new Blob([swCode], { type: "application/javascript" });
-    const swURL = URL.createObjectURL(blob);
-    navigator.serviceWorker.register(swURL);
-    // Yeni SW devreye girince bir kez yenile
-    navigator.serviceWorker.addEventListener('controllerchange', ()=>{
-      if (!sessionStorage.getItem('reloadedOnce')) {
-        sessionStorage.setItem('reloadedOnce','1'); location.reload();
-      }
-    });
-  }
-
-  // ---- (Android) "Yükle" butonu için opsiyonel mini akış ----
-  let deferredPrompt;
-  window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    const btn = document.getElementById('installBtn');
-    if (btn) btn.style.display = 'inline-flex';
-  });
-  async function installPWA(){
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-    const btn = document.getElementById('installBtn');
-    if (btn) btn.style.display = 'none';
-  }
-</script>
-
+    (function () {
+      const manifest = {
+        name: "Tarif Blogu",
+        short_name: "Tarif",
+        start_url: ".",
+        scope: ".",
+        display: "standalone",
+        background_color: "#ffffff",
+        theme_color: "#9c5b32",
+        icons: [
+          { src: "assets/icon-192.png", sizes: "192x192", type: "image/png" },
+          { src: "assets/icon-512.png", sizes: "512x512", type: "image/png" }
+        ]
+      };
+      const blob = new Blob([JSON.stringify(manifest)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("link");
+      link.rel = "manifest"; link.href = url;
+      document.head.appendChild(link);
+    })();
+  </script>
+</head>
 <body>
 
   <!-- HEADER -->
@@ -201,32 +123,28 @@ figure{ margin:0; }
   <!-- HERO -->
   <section class="container" style="padding-bottom:var(--gutter)">
     <div class="hero card">
-  <!-- 4:3 istersen class'a ar-4x3 ekle -->
-  <figure class="hero-media">
-    <img src="assets/tavuk-gogsu.jpg" alt="Yalancı Tavuk Göğsü tatlısı">
-  </figure>
-
-  <div class="hero-bar">
-    <span class="tag">Tatlı</span>
-    <span class="tag">Sütlü</span>
-    <h2 class="hero-title">Yalancı Tavuk Göğsü</h2>
-    <div class="hero-meta">
-      <span>Yazan: <strong>Kadri</strong></span><span>•</span>
-      <span>Haz.: 10 dk • Piş.: 20 dk • Toplam: 30 dk</span><span>•</span>
-      <span aria-label="5 yıldız">★★★★★</span>
+      <!-- 4:3 istersen class="hero-media ar-4x3" yap -->
+      <figure class="hero-media">
+        <img src="assets/tavuk-gogsu.jpg" alt="Yalancı Tavuk Göğsü tatlısı">
+      </figure>
+      <div class="hero-bar">
+        <span class="tag">Tatlı</span>
+        <span class="tag">Sütlü</span>
+        <h2 class="hero-title">Yalancı Tavuk Göğsü</h2>
+        <div class="hero-meta">
+          <span>Yazan: <strong>Kadri</strong></span><span>•</span>
+          <span>Haz.: 10 dk • Piş.: 20 dk • Toplam: 30 dk</span><span>•</span>
+          <span aria-label="5 yıldız">★★★★★</span>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
   </section>
 
   <!-- CONTENT -->
   <main class="container grid">
     <article class="card section" aria-labelledby="bolum-icerik">
       <h2 id="bolum-icerik">Tarif Hakkında</h2>
-      <p class="sub">En pratik tatlılardan biri olan yalancı tavuk göğsü tatlısı sizlerinde vazgeçilmezi olacak. Çabucak hazırlayabileceğiniz, 
-        fazla malzemeler kullanmadan yapabileceğiniz bir tatlı. Tadıyla sizi baymayacak tavuk göğsü tatlısı sütlü tatlı severlerin gönlünü kazanacak. 
-        Mutfakta deneyimi olmayan birinin bile rahatlıkla yapabileceği yalancı tavuk göğsü tatlısına katacağınız şık bir sunum ile masanızın parlayan yıldızı olacak. 
-        Büyük küçük herkesin çok seveceği yalancı tavuk göğsü tatlısını deneyeceklere şimdiden afiyet olsun.</p>
+      <p class="sub">En pratik tatlılardan biri olan yalancı tavuk göğsü tatlısı... Afiyet olsun.</p>
 
       <section class="card section" id="malzemeler">
         <h2>Malzemeler</h2>
@@ -265,7 +183,7 @@ figure{ margin:0; }
       <section class="card section" id="ipuclari">
         <h2>İpuçları</h2>
         <ul>
-          <li>Unu kavururken sürekli karıştırın; yanık koku oluşursa tatlı acılaşır.</li>
+          <li>Unu kavururken sürekli karıştırın; yanık koku tatlıyı acılaştırır.</li>
           <li>Sütü 2–3 seferde eklemek topaklanmayı önler.</li>
           <li>Daha yoğun doku için unu %10 artırabilirsiniz.</li>
         </ul>
@@ -313,35 +231,52 @@ figure{ margin:0; }
     <p>© <span id="yil"></span> Tarif Blogu</p>
   </footer>
 
-<script>
-  // Porsiyon çarpanı
-  const baseServings = 8;
-  function format(n){return (Math.round(n*100)/100).toString().replace('.', ',');}
-  document.addEventListener('DOMContentLoaded', ()=>{
-    document.getElementById('yil').textContent = new Date().getFullYear();
-    const input = document.getElementById('servings');
-    const qtyEls = document.querySelectorAll('[data-base-qty]');
-    function scale(){
-      const cur = Math.max(1, parseFloat(input.value||baseServings));
-      qtyEls.forEach(el=>{
-        const base = parseFloat(el.dataset.baseQty);
-        el.textContent = format(base * (cur/baseServings));
-      });
-    }
-    input.addEventListener('input', scale);
-    scale();
+  <script>
+    // Porsiyon çarpanı + yardımcılar
+    const baseServings = 8;
+    const format = n => (Math.round(n*100)/100).toString().replace('.', ',');
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.getElementById('yil').textContent = new Date().getFullYear();
+      const input = document.getElementById('servings');
+      const qtyEls = document.querySelectorAll('[data-base-qty]');
+      const scale = ()=>{
+        const cur = Math.max(1, parseFloat(input.value||baseServings));
+        qtyEls.forEach(el=>{
+          const base = parseFloat(el.dataset.baseQty);
+          el.textContent = format(base * (cur/baseServings));
+        });
+      };
+      input.addEventListener('input', scale); scale();
 
-    // Yazdır & Paylaş
-    document.querySelectorAll('[data-print]').forEach(b=>b.addEventListener('click',()=>window.print()));
-    document.querySelectorAll('[data-share]').forEach(btn=>{
-      btn.addEventListener('click', async ()=>{
-        try{
-          if(navigator.share){ await navigator.share({title:document.title,url:location.href}); }
-          else{ await navigator.clipboard.writeText(location.href); btn.textContent='Bağlantı kopyalandı'; setTimeout(()=>btn.textContent='Paylaş',1500); }
-        }catch(e){}
+      // Yazdır & Paylaş
+      document.querySelectorAll('[data-print]').forEach(b=>b.addEventListener('click',()=>window.print()));
+      document.querySelectorAll('[data-share]').forEach(btn=>{
+        btn.addEventListener('click', async ()=>{
+          try{
+            if(navigator.share){ await navigator.share({title:document.title,url:location.href}); }
+            else{ await navigator.clipboard.writeText(location.href); btn.textContent='Bağlantı kopyalandı'; setTimeout(()=>btn.textContent='Paylaş',1500); }
+          }catch(e){}
+        });
       });
     });
-  });
-</script>
+
+    // Service Worker (offline + güncelleme)
+    if ("serviceWorker" in navigator) {
+      const swCode = `
+        const CACHE='tarif-v2';
+        const PRECACHE=['./'];
+        self.addEventListener('install',e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(PRECACHE))); self.skipWaiting();});
+        self.addEventListener('activate',e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k))))); self.clients.claim();});
+        self.addEventListener('fetch',e=>{e.respondWith(caches.match(e.request).then(r=>r||fetch(e.request).then(res=>{const copy=res.clone(); caches.open(CACHE).then(c=>c.put(e.request,copy)); return res;}).catch(()=>caches.match('./'))));});
+      `;
+      const blob = new Blob([swCode], {type:'application/javascript'});
+      const swURL = URL.createObjectURL(blob);
+      navigator.serviceWorker.getRegistrations().then(regs=>regs.forEach(r=>r.unregister())); // eski SW'leri temizle
+      navigator.serviceWorker.register(swURL);
+      navigator.serviceWorker.addEventListener('controllerchange', ()=>{
+        if (!sessionStorage.getItem('reloadedOnce')) { sessionStorage.setItem('reloadedOnce','1'); location.reload(); }
+      });
+    }
+  </script>
 </body>
 </html>
