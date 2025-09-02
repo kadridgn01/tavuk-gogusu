@@ -33,20 +33,30 @@
     .site-header{grid-template-columns:1fr auto}
   }
 
-  /* HERO: figure default margin fix + full-bleed */
-.hero { border-radius: 24px; overflow: hidden; }
-.hero-media { position: relative; width: 100%; margin: 0; display: block; }  /* <-- kritik */
-.hero-media::before { content: ""; display: block; padding-top: 56.25%; }     /* 16:9 oran */
-.hero-media img { position: absolute; inset: 0; width: 100%; height: 100%;
-  object-fit: cover; object-position: center; }
-  /* oranı 4:3 yapmak istersen: figure classına ar-4x3 ekle */
- .ar-4x3::before { padding-top: 75%; }
-  /* alt yazı barı */
-  .hero-bar{position:absolute;left:0;right:0;bottom:0;
-    padding:14px 18px;background:linear-gradient(180deg,#0000 0%,#0008 55%,#000b 100%);color:#fff}
-  .tag{display:inline-block;font-size:12px;background:#ffffff26;padding:2px 8px;border-radius:999px;margin-right:6px}
-  .hero-title{margin:8px 0 6px;font-size:clamp(22px,3.8vw,32px);letter-spacing:.2px}
-  .hero-meta{font-size:13px;color:#f2f2f2;display:flex;gap:10px;flex-wrap:wrap}
+/* --- HERO FIX --- */
+.hero{ position:relative; border-radius:24px; overflow:hidden; isolation:isolate; }
+.hero-media{ margin:0; position:relative; aspect-ratio: 16 / 9; }   /* oran: 16:9 */
+.hero-media::before{ content:none !important; }                     /* eski padding hack'i kapat */
+.hero-media img{
+  position:absolute; inset:0; width:100%; height:100%;
+  object-fit: cover;               /* kaplasın — kırpma olur ama boşluk kalmaz */
+  object-position: center center;  /* tam ortadan kırp */
+  display:block;
+}
+.hero-bar{
+  position:absolute; left:0; right:0; bottom:0;
+  z-index:2;                       /* bar her zaman görselin üstünde */
+  padding:14px 18px;
+  background:linear-gradient(180deg,#0000 0%,#0008 55%,#000b 100%);
+  color:#fff;
+}
+
+/* 4:3 ister misin? figure'e class="hero-media ar-4x3" ekle */
+.ar-4x3{ aspect-ratio: 4 / 3; }
+
+/* Safari default figure boşluğunu kapatmak için genel kural */
+figure{ margin:0; }
+
 
   /* LAYOUT */
   .grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(16px,3vw,24px);margin-top:var(--gutter)}
@@ -101,22 +111,22 @@
   <!-- HERO -->
   <section class="container" style="padding-bottom:var(--gutter)">
     <div class="hero card">
-      <figure class="hero-media"> <!-- 4:3 istersen class="hero-media ar-4x3" -->
-        <img src="assets/tavuk-gogsu.jpg" alt="Yalancı Tavuk Göğsü tatlısı">
-      </figure>
-      <div class="hero-bar">
-        <span class="tag">Tatlı</span>
-        <span class="tag">Sütlü</span>
-        <h2 class="hero-title">Yalancı Tavuk Göğsü</h2>
-        <div class="hero-meta">
-          <span>Yazan: <strong>Kadri</strong></span>
-          <span>•</span>
-          <span>Haz.: 10 dk • Piş.: 20 dk • Toplam: 30 dk</span>
-          <span>•</span>
-          <span aria-label="5 yıldız">★★★★★</span>
-        </div>
-      </div>
+  <!-- 4:3 istersen class'a ar-4x3 ekle -->
+  <figure class="hero-media">
+    <img src="assets/tavuk-gogsu.jpg" alt="Yalancı Tavuk Göğsü tatlısı">
+  </figure>
+
+  <div class="hero-bar">
+    <span class="tag">Tatlı</span>
+    <span class="tag">Sütlü</span>
+    <h2 class="hero-title">Yalancı Tavuk Göğsü</h2>
+    <div class="hero-meta">
+      <span>Yazan: <strong>Kadri</strong></span><span>•</span>
+      <span>Haz.: 10 dk • Piş.: 20 dk • Toplam: 30 dk</span><span>•</span>
+      <span aria-label="5 yıldız">★★★★★</span>
     </div>
+  </div>
+</div>
   </section>
 
   <!-- CONTENT -->
