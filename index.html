@@ -170,6 +170,12 @@
 
   <section class="container hero" aria-label="Kapak görseli">
     <img class="hero-media" src="assets/tavuk-gogsu.jpg" alt="Yalancı Tavuk Göğsü tatlısı" />
+    .media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* dolsun, taşan kısımlar kırpılır */
+  object-position: center;
+}
     <div class="hero-bar">
       <span class="tag">Tatlı</span>
       <span class="tag">Sütlü</span>
